@@ -104,7 +104,6 @@ BEGIN
         :NEW.valoracio_paisatge := NULL;
         :NEW.dificultat := NULL;
         
-        -- Eliminar compañeros de ruta cuando se marca como no "feta"
         DELETE FROM COMPANYS WHERE id_comentar = :NEW.id_comentari;
     END IF;
 END;
@@ -127,7 +126,6 @@ FOR EACH ROW
 DECLARE
     ruta_propietario VARCHAR2(50);
 BEGIN
-    -- Obtener el propietario de la ruta
     SELECT usu_login INTO ruta_propietario FROM RUTA WHERE id_ruta = :NEW.id_ruta;
     
     IF :NEW.usu_login = ruta_propietario THEN
@@ -152,26 +150,6 @@ begin
 end;
 /
 
-/*
-CREATE TABLE RUTA (
-    id_ruta NUMBER(10) GENERATED ALWAYS AS IDENTITY CONSTRAINT PK_RUTA_ID PRIMARY KEY ,
-    usu_login VARCHAR2(50) CONSTRAINT FK_RUTA_USUARI REFERENCES USUARI(login),
-    titol VARCHAR2(50) NOT NULL,
-    descripcio VARCHAR2(50) NOT NULL,
-    text CLOB NOT NULL,
-    distancia NUMBER(10) NOT NULL,
-    temps NUMBER(10) NOT NULL,
-    desnivell_positiu NUMBER(10) NOT NULL,
-    desnivell_negatiu NUMBER(10) NOT NULL,
-    dificultat NUMBER(10) NOT NULL,
-    num_persones NUMBER(10) DEFAULT 0, fet 
-    suma_valoracions NUMBER(10)DEFAULT 0 ,fet
-    num_persones_fet_ruta NUMBER(10)DEFAULT 0 , fet
-    suma_valoracion_saguretat NUMBER(10)DEFAULT 0 ,
-    suma_valoracio_paisatge NUMBER(10)DEFAULT 0 
-);
-
-*/
 
 
 create or replace trigger trig_calcular_columnes BEFORE insert on COMENTARI
