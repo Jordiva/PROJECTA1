@@ -1,0 +1,24 @@
+
+USUARI(#login,email,password+,foto);
+
+RUTA(#id,id_usuari,+titol,descripcio,text,dist,temps,desn_p,desn_n,dificultat);
+        FK(id_usuari) REFERENCES USUARI(email);
+
+COMENTARI(#id , id_usuari, id_ruta text ,v_inf, feta , dificultat , v_pai, v_seg, mt);
+        FK(id_usuari) REFERENCES USUARI(email);
+        FK(id_ruta) REFERENCES RUTA(id);
+
+FETES(#id_usuari,#mt,id_ruta);
+        FK(id_usuari) REFERENCES USUARI(email);
+        FK(id_ruta) REFERENCES RUTA(id);
+
+COMPANYS(#id_usuari,#id_comentar);
+        FK(id_usuari) REFERENCES USUARI(email);
+        FK(id_comentar) REFERENCES COMENTARI(id);
+
+PUNT(#num ,id_tipus, #id_ruta, nom , desc, foto, lat, lon , alt);
+        FK(id_ruta) REFERENCES RUTA(id);
+        FK(id_tipus) REFERENCES TIPUS(id);
+
+
+TIPUS(#id, nom, icona);
