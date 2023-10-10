@@ -1,22 +1,27 @@
+package org.milaifontanals;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.milaifontanals;
 
+
+
+import p_interficiepersistencia.GestorBDExceptionTOT;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import p_interficiepersistencia.IGestorBDWiki;
 
 /**
  *
  * @author isard
  */
-final public class ConexioGeneral {
+final public class ConexioGeneral implements IGestorBDWiki{
 
     private static Connection conn;
 
@@ -45,7 +50,7 @@ final public class ConexioGeneral {
         }
     }
 
-    public static Connection getConnection() throws GestorBDExceptionTOT {
+    public Connection getConnection() throws GestorBDExceptionTOT {
         if (conn == null) {
             new ConexioGeneral();
         }
@@ -53,7 +58,7 @@ final public class ConexioGeneral {
 
     }
 
-    public static void tancar() throws GestorBDExceptionTOT {
+    public void tancar() throws GestorBDExceptionTOT {
         if (conn != null) {
             try {
                 conn.rollback();
@@ -68,7 +73,7 @@ final public class ConexioGeneral {
         }
     }
 
-    public static void validarCanvis() throws GestorBDExceptionTOT {
+    public void validarCanvis() throws GestorBDExceptionTOT {
         try {
             conn.commit();
         } catch (SQLException ex) {
@@ -76,7 +81,7 @@ final public class ConexioGeneral {
         }
     }
 
-    public static void desferCanvis() throws GestorBDExceptionTOT {
+    public void desferCanvis() throws GestorBDExceptionTOT {
         try {
             conn.rollback();
         } catch (SQLException ex) {
