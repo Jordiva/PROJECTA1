@@ -4,71 +4,94 @@ import java.sql.Blob;
 
 public class Usuari {
     
-    private String Login;
-    private String Email;
-    private String Password;
-    private String Nom;
-    private String Cognom;
-    private Blob FotoPerfil;
+    private String login;
+    private String email;
+    private String password;
+    private String nom;
+    private String cognom;
+    private Blob fotoPerfil;
     
 
     public Usuari() {
     }
-    
-    public Usuari(String login, String email, String password, String nom, String cognom) {
-        Login = login;
-        Email = email;
-        Password = password;
-        Nom = nom;
-        Cognom = cognom;
+
+    public Usuari(String login, String email, String password, String nom, String cognom, Blob fotoPerfil) throws ExceptionTOT {
+        setLogin(login);
+        setEmail(email);
+        setPassword(password);
+        setNom(nom);
+        setCognom(cognom);
+        setFotoPerfil(fotoPerfil);
     }
 
-
-    public Usuari(String login, String email, String password, String nom, String cognom, Blob fotoPerfil) {
-        Login = login;
-        Email = email;
-        Password = password;
-        Nom = nom;
-        Cognom = cognom;
-        FotoPerfil = fotoPerfil;
+    public Usuari(String login, String email, String password, String nom, String cognom) throws ExceptionTOT {
+        setLogin(login);
+        setEmail(email);
+        setPassword(password);
+        setNom(nom);
+        setCognom(cognom);
     }
 
     public String getLogin() {
-        return Login;
+        return login;
     }
+
+
     public void setLogin(String login) {
-        Login = login;
+        this.login = login;
     }
+
+
     public String getEmail() {
-        return Email;
+        return email;
     }
+
+
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
+
+
     public String getPassword() {
-        return Password;
+        return password;
     }
+
+
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
+
+
     public String getNom() {
-        return Nom;
+        return nom;
     }
+
+
     public void setNom(String nom) {
-        Nom = nom;
+        this.nom = nom;
     }
+
+
     public String getCognom() {
-        return Cognom;
+        return cognom;
     }
+
+
     public void setCognom(String cognom) {
-        Cognom = cognom;
+        this.cognom = cognom;
     }
+
+
     public Blob getFotoPerfil() {
-        return FotoPerfil;
+        return fotoPerfil;
     }
+
+
     public void setFotoPerfil(Blob fotoPerfil) {
-        FotoPerfil = fotoPerfil;
+        this.fotoPerfil = fotoPerfil;
     }
+    
+    
 
     
 }

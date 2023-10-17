@@ -21,15 +21,15 @@ import p_interficiepersistencia.IGestorBDWiki;
  *
  * @author isard
  */
-final public class ConexioGeneral implements IGestorBDWiki{
+final public class BDGeneral implements IGestorBDWiki{
 
     private static Connection conn;
 
-    private ConexioGeneral() throws GestorBDExceptionTOT {
+    private BDGeneral() throws GestorBDExceptionTOT {
         this("Oracle.properties");
     }
 
-    private ConexioGeneral(String nomFitxerPropietats) throws GestorBDExceptionTOT {
+    private BDGeneral(String nomFitxerPropietats) throws GestorBDExceptionTOT {
         try {
             Properties props = new Properties();
             props.load(new FileInputStream(nomFitxerPropietats));
@@ -50,9 +50,9 @@ final public class ConexioGeneral implements IGestorBDWiki{
         }
     }
 
-    public Connection getConnection() throws GestorBDExceptionTOT {
+    public static Connection getConnection() throws GestorBDExceptionTOT {
         if (conn == null) {
-            new ConexioGeneral();
+            new BDGeneral();
         }
         return conn;
 
@@ -88,4 +88,13 @@ final public class ConexioGeneral implements IGestorBDWiki{
             throw new GestorBDExceptionTOT("Error en desfer els canvis: " + ex.getMessage());
         }
     }
+
+    public Boolean validarLogn(String login, String password) throws GestorBDExceptionTOT {
+        
+        
+
+    }
+
+
+    
 }

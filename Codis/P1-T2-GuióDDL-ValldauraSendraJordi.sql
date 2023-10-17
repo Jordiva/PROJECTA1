@@ -30,6 +30,7 @@ CREATE TABLE RUTA (
     text CLOB NOT NULL,
     distancia NUMBER(10) NOT NULL,
     temps NUMBER(10) NOT NULL,
+    moment_temp TIMESTAMP NOT NULL DEFAULT SYSTIMESTAMP,
     desnivell_positiu NUMBER(10) NOT NULL,
     desnivell_negatiu NUMBER(10) NOT NULL,
     dificultat NUMBER(10) NOT NULL,
@@ -47,8 +48,8 @@ CREATE TABLE PUNT (
     nom VARCHAR2(50) NOT NULL,
     descripcio VARCHAR2(50) NOT NULL,
     foto BLOB,
-    latitud NUMBER(10,6) NOT NULL,
-    longitud NUMBER(10,6) NOT NULL,
+    latitud NUMBER(10,6) NOT NULL CHECK (latitud >= -90 AND latitud <= 90),
+    longitud NUMBER(10,6) NOT NULL CHECK (longitud >= -180 AND longitud <= 180),
     altitud NUMBER(10,6) 
 );
 
@@ -62,13 +63,13 @@ CREATE TABLE COMENTARI (
     dificultat NUMBER(10) CHECK (dificultat >= 1 AND dificultat <= 5),
     valoracio_paisatge NUMBER(10) CHECK (valoracio_paisatge >= 1 AND valoracio_paisatge <= 5),
     valoracio_seguretat NUMBER(10) CHECK (valoracio_seguretat >= 1 AND valoracio_seguretat <= 5),
-    moment_temp TIMESTAMP NOT NULL
+    moment_temp TIMESTAMP NOT NULL DEFAULT SYSTIMESTAMP
 );
 
 CREATE TABLE FETES (
     usu_login VARCHAR2(50) CONSTRAINT FK_FETES_USUARI REFERENCES USUARI(login),
     id_ruta NUMBER(10) CONSTRAINT FK_FETES_RUTA REFERENCES RUTA(id_ruta),
-    moment_temp TIMESTAMP NOT NULL,
+    moment_temp TIMESTAMP NOT NULL DEFAULT SYSTIMESTAMP,
     CONSTRAINT PK_FETES_ID PRIMARY KEY (usu_login, moment_temp)
 );
 

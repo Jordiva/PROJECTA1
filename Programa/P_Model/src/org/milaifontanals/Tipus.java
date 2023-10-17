@@ -6,47 +6,52 @@ import java.sql.Blob;
 public class Tipus {
     
 
-    private int Id;
-    private String Nom;
-    private Blob Foto;
+    private int id;
+    private String nom;
+    private Blob foto;
 
 
     public Tipus() {
     }
 
-    
-    public Tipus(int id, String nom) {
-        Id = id;
-        Nom = nom;
+    public Tipus(int id, String nom, Blob foto) throws ExceptionTOT {
+        setId(id);
+        setNom(nom);
+        setFoto(foto);
     }
+    
 
-    public Tipus(int id, String nom, Blob foto) {
-        Id = id;
-        Nom = nom;
-        Foto = foto;
+    public Tipus(int id, String nom) throws ExceptionTOT {
+        setId(id);
+        setNom(nom);
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getNom() {
-        return Nom;
+        return nom;
     }
 
-    public void setNom(String nom) {
-        Nom = nom;
+    public void setNom(String nom)throws ExceptionTOT {
+        if (nom == null || nom.trim().length() == 0) {
+            throw new ExceptionTOT("El nom del tipus no pot ser null");
+        }
+        this.nom = nom;
     }
 
     public Blob getFoto() {
-        return Foto;
+        return foto;
     }
 
     public void setFoto(Blob foto) {
-        Foto = foto;
+        this.foto = foto;
     }
+
+    
 }

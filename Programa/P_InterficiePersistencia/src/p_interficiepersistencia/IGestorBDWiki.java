@@ -19,5 +19,8 @@ public interface IGestorBDWiki {
 
     void desferCanvis() throws GestorBDExceptionTOT;
 
-    Connection getConnection() throws GestorBDExceptionTOT;
+    Boolean validarLogn(String login, String password) throws GestorBDExceptionTOT;
+    
+
+
 }
