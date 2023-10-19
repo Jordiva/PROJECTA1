@@ -7,9 +7,9 @@ public class Punts  {
 
 
 
-    private Long numPunt;
-    private Ruta id_ruta;
-    private Tipus id_tipus;
+    private int numPunt;
+    private int id_ruta;
+    private int id_tipus;
     private String nom;
     private String descripcio;
     private Blob foto;
@@ -23,8 +23,19 @@ public class Punts  {
 
 
 
+    
 
-    public Punts(Long numPunt, Ruta id_ruta, Tipus id_tipus, String nom, String descripcio, Blob foto, float latitud,
+    public Punts(int numPunt, int id_ruta, int id_tipus, String nom, String descripcio, float latitud, float longitud,
+            float altitud) {
+        setNumPunt(numPunt);
+
+    }
+
+
+
+
+
+    public Punts(int numPunt, int id_ruta, int id_tipus, String nom, String descripcio, Blob foto, float latitud,
             float longitud, float altitud) throws ExceptionTOT {
         setNumPunt(numPunt);
         setId_ruta(id_ruta);
@@ -37,7 +48,7 @@ public class Punts  {
         setAltitud(altitud);
     }
 
-    public Punts(Ruta id_ruta, Tipus id_tipus, String nom, String descripcio, Blob foto, float latitud,
+    public Punts(int id_ruta, int id_tipus, String nom, String descripcio, Blob foto, float latitud,
             float longitud, float altitud) throws ExceptionTOT {
         setId_ruta(id_ruta);
         setId_tipus(id_tipus);
@@ -52,12 +63,12 @@ public class Punts  {
 
 
 
-    public Long getNumPunt() {
+    public int getNumPunt() {
         return numPunt;
     }
 
 
-    public void setNumPunt(Long numPunt) {
+    public void setNumPunt(int numPunt) {
         this.numPunt = numPunt;
     }
 
@@ -134,22 +145,22 @@ public class Punts  {
     }
 
 
-    public Ruta getId_ruta() {
+    public int getId_ruta() {
         return id_ruta;
     }
 
 
-    public void setId_ruta(Ruta id_ruta) {
+    public void setId_ruta(int id_ruta) {
         this.id_ruta = id_ruta;
     }
 
 
-    public Tipus getId_tipus() {
+    public int getId_tipus() {
         return id_tipus;
     }
 
 
-    public void setId_tipus(Tipus id_tipus) {
+    public void setId_tipus(int id_tipus) {
         this.id_tipus = id_tipus;
     }
 }

@@ -4,7 +4,7 @@ import java.sql.Clob;
 public class Ruta {
 
     private int id_Ruta;
-    private Usuari usuari;
+    private String usuari;
     private String titol;
     private String descripcio;
     private Clob text;
@@ -25,7 +25,7 @@ public class Ruta {
 
     
 
-    public Ruta(int id_Ruta, Usuari usuari, String titol, String descripcio, Clob text, int distancia, int temps,
+    public Ruta(int id_Ruta, String usuari, String titol, String descripcio, Clob text, int distancia, int temps,
             int desnivellPositiu, int desnivellNegatiu, int dificultat, int numPersones, int sumaValoracions,
             int numPersonesFetRuta, int sumaValoracioSeguretat, int sumaValoracioPaisatge, int valoracioMitjana) throws ExceptionTOT {
         setId_Ruta(id_Ruta);
@@ -50,7 +50,7 @@ public class Ruta {
 
 
 
-    public Ruta(int id_Ruta, Usuari usuari, String titol, String descripcio, Clob text, int distancia, int temps,
+    public Ruta(int id_Ruta, String usuari, String titol, String descripcio, Clob text, int distancia, int temps,
             int desnivellPositiu, int desnivellNegatiu, int dificultat) throws ExceptionTOT {
         setId_Ruta(id_Ruta);
         setUsuari(usuari);
@@ -65,8 +65,32 @@ public class Ruta {
     }
 
 
+    
 
-    public Ruta(Usuari usuari, String titol, String descripcio, Clob text, int distancia, int temps,
+    public Ruta(int id_Ruta, String usuari, String titol, String descripcio, Clob text, int distancia, int temps,
+            int desnivellPositiu, int desnivellNegatiu, int dificultat, int numPersones, int sumaValoracions,
+            int numPersonesFetRuta, int sumaValoracioSeguretat, int sumaValoracioPaisatge) throws ExceptionTOT {
+        setId_Ruta(id_Ruta);
+        setUsuari(usuari);
+        setTitol(titol);
+        setDescripcio(descripcio);
+        setText(text);
+        setDistancia(distancia);
+        setTemps(temps);
+        setDesnivellPositiu(desnivellPositiu);
+        setDesnivellNegatiu(desnivellNegatiu);
+        setDificultat(dificultat);
+        setNumPersones(numPersones);
+        setSumaValoracions(sumaValoracions);
+        setNumPersonesFetRuta(numPersonesFetRuta);
+        setSumaValoracioSeguretat(sumaValoracioSeguretat);
+        setSumaValoracioPaisatge(sumaValoracioPaisatge);
+        
+    }
+
+
+
+    public Ruta(String usuari, String titol, String descripcio, Clob text, int distancia, int temps,
             int desnivellPositiu, int desnivellNegatiu, int dificultat, int numPersones, int sumaValoracions,
             int numPersonesFetRuta, int sumaValoracioSeguretat, int sumaValoracioPaisatge, int valoracioMitjana) throws ExceptionTOT {
         setUsuari(usuari);
@@ -90,7 +114,7 @@ public class Ruta {
 
 
 
-    public Ruta(int id_Ruta, Usuari usuari, String titol, String descripcio, Clob text, int distancia, int temps,
+    public Ruta(int id_Ruta, String usuari, String titol, String descripcio, Clob text, int distancia, int temps,
             int desnivellPositiu, int desnivellNegatiu, int dificultat, int valoracioMitjana) throws ExceptionTOT {
         setId_Ruta(id_Ruta);
         setUsuari(usuari);
@@ -112,11 +136,11 @@ public class Ruta {
         this.id_Ruta = id_Ruta;
     }
 
-    public Usuari getUsuari() {
+    public String getUsuari() {
         return usuari;
     }
 
-    public void setUsuari(Usuari usuari) {
+    public void setUsuari(String usuari) {
         this.usuari = usuari;
     }
 
