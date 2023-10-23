@@ -194,7 +194,6 @@ final public class BDGeneral implements IGestorBDWiki{
     @Override
     public boolean afagirRuta(Ruta ruta) throws GestorBDExceptionTOT, ExceptionTOT {
         
-
         PreparedStatement ps = null;
 
         try {
@@ -358,9 +357,69 @@ final public class BDGeneral implements IGestorBDWiki{
     }
 
     @Override
-    public boolean borraPunt(int idPunt, int id_tipus, int id_ruta) throws GestorBDExceptionTOT, ExceptionTOT {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'borraPunt'");
+    public boolean borraPunt(int idPunt, int id_ruta) throws GestorBDExceptionTOT, ExceptionTOT {
+        
+        PreparedStatement ps = null;
+
+        try {
+            ps = conn.prepareStatement("DELETE FROM PUNT WHERE num_punt = ? AND id_ruta = ?");
+            ps.setInt(1, idPunt);
+            ps.setInt(2, id_ruta);
+
+            if(ps.executeUpdate() != 1){
+                desferCanvis();
+                return false;
+            }                
+            return true;
+
+        } catch (SQLException e) {
+            throw new GestorBDExceptionTOT("Error al Borrar una ruta: " + e.getMessage());
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    throw new GestorBDExceptionTOT("Error en tancar el PreparedStatement: " + ex.getMessage());
+                }
+            }
+        }
+        
+    }
+
+    @Override
+    public boolean modificarPunt(Punts punt) throws GestorBDExceptionTOT, ExceptionTOT {
+        
+        PreparedStatement ps = null;
+
+        try {
+            ps = conn.prepareStatement("UPDATE PUNT SET id_tipus = ?, nom = ?, descripcio = ?, latitud = ?, longitud = ?, altitud = ? WHERE num_punt = ? AND id_ruta = ?");
+            ps.setInt(1, punt.getId_tipus());
+            ps.setString(2, punt.getNom());
+            ps.setString(3, punt.getDescripcio());
+            ps.setFloat(4, punt.getLatitud());
+            ps.setFloat(5, punt.getLongitud());
+            ps.setFloat(6, punt.getAltitud());
+            ps.setInt(7, punt.getNumPunt());
+            ps.setInt(8, punt.getId_ruta());
+
+            if(ps.executeUpdate() != 1){
+                desferCanvis();
+                return false;
+            }                
+            return true;
+
+        } catch (SQLException e) {
+            throw new GestorBDExceptionTOT("Error al Modificar una ruta: " + e.getMessage());
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException ex) {
+                    throw new GestorBDExceptionTOT("Error en tancar el PreparedStatement: " + ex.getMessage());
+                }
+            }
+        }
+
     }
 
 
