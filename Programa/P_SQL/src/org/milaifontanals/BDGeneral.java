@@ -33,7 +33,7 @@ final public class BDGeneral implements IGestorBDWiki{
         this("Oracle.properties");
     }
 
-    private BDGeneral(String nomFitxerPropietats) throws GestorBDExceptionTOT {
+    public BDGeneral(String nomFitxerPropietats) throws GestorBDExceptionTOT {
         try {
             Properties props = new Properties();
             props.load(new FileInputStream(nomFitxerPropietats));
