@@ -22,9 +22,6 @@ public class Punts  {
     }
 
 
-
-    
-
     public Punts(int numPunt, int id_ruta, int id_tipus, String nom, String descripcio, float latitud, float longitud,
             float altitud) {
         setNumPunt(numPunt);

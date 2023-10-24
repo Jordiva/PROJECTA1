@@ -1,5 +1,6 @@
 package org.milaifontanals;
 
+import java.sql.Statement;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Clob;
@@ -117,7 +118,7 @@ final public class BDGeneral implements IGestorBDWiki{
             ps = conn.prepareStatement("SELECT * FROM RUTA WHERE USU_LOGIN = ?");
             ps.setString(1, loginUsuari);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 int id = rs.getInt("ID_RUTA");
                 String usuari = rs.getString("USU_LOGIN");
                 String titol = rs.getString("TITOL");
@@ -131,7 +132,7 @@ final public class BDGeneral implements IGestorBDWiki{
                 int numPersones = rs.getInt("NUM_PERSONES");
                 int sumaValoracions = rs.getInt("SUMA_VALORACIONS");
                 int numPersonesFetRuta = rs.getInt("NUM_PERSONES_FET_RUTA");
-                int sumaValoracioSeguretat = rs.getInt("SUMA_VALORACIO_SEGURETAT");
+                int sumaValoracioSeguretat = rs.getInt("SUMA_VALORACION_SAGURETAT");
                 int sumaValoracioPaisatge = rs.getInt("SUMA_VALORACIO_PAISATGE");
 
                 rr.add(new Ruta( id,  usuari,  titol,  descripcio,  text,  distancia,  temps,
@@ -163,7 +164,7 @@ final public class BDGeneral implements IGestorBDWiki{
             ps = conn.prepareStatement("SELECT * FROM PUNT WHERE ID_RUTA = ?");
             ps.setInt(1, id_Ruta);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 int numPunt = rs.getInt("NUM_PUNT");
                 int id_ruta = rs.getInt("ID_RUTA");
                 int id_tipus = rs.getInt("ID_TIPUS");
@@ -302,11 +303,13 @@ final public class BDGeneral implements IGestorBDWiki{
     @Override
     public List<Tipus> geTipusllista() throws GestorBDExceptionTOT, ExceptionTOT {
         List <Tipus> tt = new ArrayList<Tipus>();
-        PreparedStatement ps = null;
+        Statement ps = null;
         try {
-            ps = conn.prepareStatement("SELECT * FROM TIPUS");
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            
+            ps = conn.createStatement();
+             
+            ResultSet rs = ps.executeQuery("SELECT id_tipus , nom FROM TIPUS");
+            while(rs.next()) {
                 int id = rs.getInt("ID_TIPUS");
                 String nom = rs.getString("NOM");
 
